@@ -1,0 +1,121 @@
+:root {
+  --mdr-bg: #ffffff;
+  --mdr-fg: #1f2328;
+  --mdr-muted: #59636e;
+  --mdr-border: #d1d9e0;
+  --mdr-accent: #0969da;
+  --mdr-toc-width: 280px;
+}
+
+:root[data-mdr-theme="dark"] {
+  --mdr-bg: #0d1117;
+  --mdr-fg: #f0f6fc;
+  --mdr-muted: #9198a1;
+  --mdr-border: #3d444d;
+  --mdr-accent: #4493f8;
+}
+
+/* Hide the plain text until the first render is done, then swap. */
+:root:not([data-mdr]) body > pre,
+:root[data-mdr]:not([data-mdr-raw]) .mdr-source,
+:root[data-mdr-raw] #mdr-content,
+:root[data-mdr-raw] #mdr-toc,
+:root:not([data-mdr-toc]) #mdr-toc {
+  display: none;
+}
+
+:root[data-mdr] body {
+  margin: 0;
+  background: var(--mdr-bg);
+  color: var(--mdr-fg);
+}
+
+.mdr-source {
+  margin: 0;
+  padding: 24px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+#mdr-content {
+  box-sizing: border-box;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 32px 45px 64px;
+}
+
+:root[data-mdr-width="fixed"] #mdr-content {
+  max-width: 980px;
+}
+
+#mdr-content .mermaid {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+#mdr-toc {
+  position: fixed;
+  inset: 0 auto 0 0;
+  box-sizing: border-box;
+  width: var(--mdr-toc-width);
+  padding: 24px 12px;
+  overflow-y: auto;
+  border-right: 1px solid var(--mdr-border);
+  background: var(--mdr-bg);
+  font: 13px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+}
+
+#mdr-toc a {
+  display: block;
+  padding: 4px 8px;
+  border-radius: 6px;
+  color: var(--mdr-muted);
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#mdr-toc a:hover {
+  color: var(--mdr-fg);
+}
+
+#mdr-toc a.mdr-active {
+  color: var(--mdr-accent);
+  font-weight: 600;
+}
+
+#mdr-toc .mdr-toc-h1 { color: var(--mdr-fg); font-weight: 600; }
+#mdr-toc .mdr-toc-h3 { padding-left: 20px; }
+#mdr-toc .mdr-toc-h4 { padding-left: 32px; }
+#mdr-toc .mdr-toc-h5 { padding-left: 44px; }
+#mdr-toc .mdr-toc-h6 { padding-left: 56px; }
+
+:root[data-mdr-toc]:not([data-mdr-raw]) body {
+  padding-left: var(--mdr-toc-width);
+}
+
+@media (max-width: 900px) {
+  #mdr-toc {
+    display: none;
+  }
+
+  :root[data-mdr-toc]:not([data-mdr-raw]) body {
+    padding-left: 0;
+  }
+
+  #mdr-content {
+    padding: 16px;
+  }
+}
+
+@media print {
+  #mdr-toc {
+    display: none;
+  }
+
+  :root[data-mdr-toc] body {
+    padding-left: 0;
+  }
+}

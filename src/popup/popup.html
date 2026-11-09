@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <h1>Markdown Reader</h1>
+
+    <label class="row">
+      Theme
+      <select data-key="theme">
+        <option value="auto">Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+    </label>
+    <label class="row">
+      Width
+      <select data-key="width">
+        <option value="fixed">Fixed</option>
+        <option value="full">Full</option>
+      </select>
+    </label>
+
+    <hr />
+
+    <label class="row">Table of contents <input type="checkbox" data-key="toc" /></label>
+    <label class="row">Auto reload <input type="checkbox" data-key="autoreload" /></label>
+    <label class="row">Syntax highlighting <input type="checkbox" data-key="highlight" /></label>
+    <label class="row">Mermaid diagrams <input type="checkbox" data-key="mermaid" /></label>
+    <label class="row">Math (KaTeX) <input type="checkbox" data-key="math" /></label>
+
+    <hr />
+
+    <button id="raw" type="button" disabled>Show raw Markdown</button>
+    <p id="hint" hidden>Open a Markdown file to use the reader.</p>
+
+    <script src="../settings.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

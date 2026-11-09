@@ -1,0 +1,61 @@
+{
+  "manifest_version": 2,
+  "name": "Markdown Reader",
+  "version": "0.1.0",
+  "description": "Renders Markdown files as HTML: GitHub styling, syntax highlighting, table of contents, Mermaid diagrams and math.",
+  "icons": {
+    "48": "icons/icon.svg",
+    "96": "icons/icon.svg"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "markdown-reader@luiscoelho",
+      "strict_min_version": "140.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    },
+    "gecko_android": {
+      "strict_min_version": "142.0"
+    }
+  },
+  "permissions": ["storage", "scripting", "webRequest", "webRequestBlocking", "<all_urls>"],
+  "background": {
+    "scripts": ["src/settings.js", "src/background.js"]
+  },
+  "browser_action": {
+    "default_title": "Markdown Reader",
+    "default_icon": "icons/icon.svg",
+    "default_popup": "src/popup/popup.html"
+  },
+  "commands": {
+    "toggle-raw": {
+      "suggested_key": { "default": "Alt+Shift+M" },
+      "description": "Toggle between rendered and raw Markdown"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*/*.md",
+        "*://*/*.md?*",
+        "*://*/*.markdown",
+        "*://*/*.markdown?*",
+        "*://*/*.mdown",
+        "*://*/*.mdown?*",
+        "*://*/*.mkd",
+        "*://*/*.mkd?*",
+        "*://*/*.mkdn",
+        "*://*/*.mkdn?*",
+        "file:///*.md",
+        "file:///*.markdown",
+        "file:///*.mdown",
+        "file:///*.mkd",
+        "file:///*.mkdn"
+      ],
+      "js": ["src/content/detect.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": ["vendor/katex/fonts/*"]
+}
